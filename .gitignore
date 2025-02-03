@@ -1,0 +1,11 @@
+.idea
+*.pyc
+__pycache__
+Pipfile.lock
+_OUTPUT_
+venv/
+build/
+dist/
+*.egg-info/
+orchestrator/bin/
+docker-compose.yml

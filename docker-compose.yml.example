@@ -1,0 +1,24 @@
+services:
+
+  grafana-backup:
+    container_name: grafana-backup-tool
+    image: grafana-backup
+    user: "$UID:$GID"
+    ports:
+      - "9111:9111"
+    environment:
+      - PORT=9111
+
+      - GRAFANA_TOKEN=
+      - GRAFANA_URL=
+      - GRAFANA_ADMIN_ACCOUNT=
+      - GRAFANA_ADMIN_PASSWORD=
+      - VERIFY_SSL=False
+
+      - AWS_S3_BUCKET_NAME=
+      - AWS_S3_BUCKET_KEY=
+      - AWS_DEFAULT_REGION=
+      - AWS_ACCESS_KEY_ID=
+      - AWS_SECRET_ACCESS_KEY=
+    volumes:
+      - ${BACKUP_DATA_PATH}:/opt/grafana-backup-tool/_OUTPUT_
