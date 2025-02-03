@@ -74,7 +74,7 @@ curl localhost:9111/backup
     - Try restore all of Grafana components from **local storage or AWS S3**
 
 ```bash
-1curl -G localhost:9111/restore/all \
+curl -G localhost:9111/restore/all \
 	--data-urlencode archive="202501220533.tar.gz"
 ```
 
