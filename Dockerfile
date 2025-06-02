@@ -1,3 +1,10 @@
+FROM golang:1.23.1 AS builder
+
+WORKDIR /code
+COPY . /code/
+
+RUN make build
+
 FROM alpine:latest
 
 LABEL maintainer="iron@milkyway.zone"
@@ -13,9 +20,9 @@ RUN chmod -R a+r /opt/grafana-backup-tool \
 
 RUN pip3 --no-cache-dir install . --break-system-packages
 
-COPY ./orchestrator/bin/orchestrator /usr/bin/orchestrator
+COPY --from=builder /code/orchestrator/orchestrator /usr/bin/orchestrator
 
 RUN chown -R 1337:1337 /opt/grafana-backup-tool
 USER 1337
 
-CMD ["/usr/bin/orchestrator"]
+CMD ["orchestrator"]
